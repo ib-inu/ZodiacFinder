@@ -140,7 +140,7 @@ body {
   background-color: var(--bgColor);
   width: 50%;
   position: absolute;
-  top: 50%;
+  top: 80%;
   animation: modalShowsUp 1s ease-out forwards;
   left: 50%;
   transform: translate(-50%, -50%);
