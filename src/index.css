@@ -140,7 +140,7 @@ body {
   background-color: var(--bgColor);
   width: 50%;
   position: absolute;
-  top: 80%;
+  top: 100%;
   animation: modalShowsUp 1s ease-out forwards;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -222,7 +222,6 @@ body {
   }
   .modal {
     width: 100%;
-    min-height: 70vh;
   }
   .modal .content {
     display: flex;
