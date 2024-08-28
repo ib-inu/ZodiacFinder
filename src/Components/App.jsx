@@ -6,10 +6,12 @@ import { zodiacSigns } from "../Data/zodiacData";
 
 function App() {
     const [modal, setModal] = useState(false);
-    const [query, setQuery] = useState("");
-    const [date, setDate] = useState(0);
+    const [query, setQuery] = useState('');
+    const [date, setDate] = useState('');
     const [firstStep, setFirstStep] = useState(false);
 
+
+    console.log(date, query);
 
 
 
