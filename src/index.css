@@ -138,7 +138,7 @@ body {
 
 .modal {
   background-color: var(--bgColor);
-  width: 50vw;
+  width: 50%;
   position: absolute;
   top: 50%;
   animation: modalShowsUp 1s ease-out forwards;
@@ -235,6 +235,9 @@ body {
   .search input {
     width: 70vw;
     padding-left: 20px;
+  }
+  .modal {
+    top: 80%;
   }
   .search button {
     font-size: 1em;
