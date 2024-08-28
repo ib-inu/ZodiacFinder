@@ -1,0 +1,22 @@
+.btn__primary {
+  border: none;
+  font-size: 2vw;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 28px;
+  width: 9vw;
+  height: 6vh;
+  padding: 1px;
+  /* background: linear-gradient(45deg, var(--enhanceColor), #e5531a); */
+  background-image: linear-gradient(
+    to right,
+    var(--enhanceColor) 0%,
+    #e5531a 51%,
+    #fda085 100%
+  );
+  transition: 0.5s;
+  background-size: 200% auto;
+}
+.btn__primary:hover {
+  background-position: right center;
+}
