@@ -18,8 +18,15 @@ function App() {
 
     function getZodiacSign(day, month) {
         const formattedDate = `${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
+
         return zodiacSigns.find(sign => {
-            return formattedDate >= sign.startDate && formattedDate <= sign.endDate;
+
+            if (sign.startDate <= sign.endDate) {
+                return formattedDate >= sign.startDate && formattedDate <= sign.endDate;
+            }
+            else {
+                return formattedDate >= sign.startDate || formattedDate <= sign.endDate;
+            }
         });
     }
 
