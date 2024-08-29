@@ -12,6 +12,7 @@ function App() {
     const [sign, setSign] = useState(null);
     const modalRef = useRef(null);
     const [count, setCount] = useState(0);
+    const [alert, setAlert] = useState(false);
 
     useEffect(() => {
         if (date && query) {
@@ -22,8 +23,14 @@ function App() {
     }, [date, query]);
 
     function modalShowsUp() {
+        if (!query) {
+            setAlert(true);
+            return;
+        }
+
         setModal(true);
         setCount(c => c + 1);
+        setAlert(false);
     }
 
     function getZodiacSign(day, month) {
@@ -76,6 +83,7 @@ function App() {
                 modalShowsUp={modalShowsUp}
                 query={query}
                 setQuery={setQuery}
+                alert={alert}
             />
             {modal && (
                 <Modal

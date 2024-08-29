@@ -1,6 +1,10 @@
 import Button from "../../helper/Button";
 
-function Search({ modalShowsUp, query, setQuery, count }) {
+function Search({ modalShowsUp, query, setQuery, count, alert }) {
+
+
+
+
 
     const handleKeyPress = (event) => {
         if (event.key === 'Enter') {
@@ -21,6 +25,7 @@ function Search({ modalShowsUp, query, setQuery, count }) {
                 onKeyDown={handleKeyPress}
             />
             <Button text="&#10143;" onClick={modalShowsUp} />
+            {alert ? <p className="alert">please enter a value</p> : ''}
         </div>
     );
 }

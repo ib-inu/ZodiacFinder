@@ -1,7 +1,12 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import ModalError from "./ModalError";
+import ZodiacSIgn from "./ZodiacSIgn";
+import FirstStep from "./FirstStep";
 
 function Modal({ close, getDate, date, sign, firstStep, setFirstStep, error, modalRef }) {
+
+    const [alert, setAlert] = useState(false);
+
 
     useEffect(() => {
         if (modalRef.current && !firstStep) {
@@ -11,10 +16,18 @@ function Modal({ close, getDate, date, sign, firstStep, setFirstStep, error, mod
 
     const handleKeyPress = (event) => {
         if (event.key === 'Enter') {
-            setFirstStep(true);
+            handleSubmit();
         }
     };
 
+    function handleSubmit() {
+        if (!date) {
+            setAlert(true)
+            return;
+        }
+        setFirstStep(true)
+        setAlert(false)
+    }
     return (
         <>
             <div className="overlay"></div>
@@ -22,36 +35,14 @@ function Modal({ close, getDate, date, sign, firstStep, setFirstStep, error, mod
                 {firstStep ? (
                     <>
                         {sign ? (
-                            <>
-                                <button className="close-modal" onClick={close}>&times;</button>
-                                <div className="content-img">
-                                    <span>{sign.image}</span>
-                                </div>
-                                <div className="content-text">
-                                    <span>You&apos;ve got :</span>
-                                    <h1>{sign.name}</h1>
-                                    <p>{sign.description}</p>
-                                </div>
-                            </>
+                            <ZodiacSIgn sign={sign} close={close} />
                         ) : (
                             <ModalError error={error} close={close} />
                         )}
                     </>
                 ) : (
-                    <div className="birthdate">
-                        <h1>Which day:</h1>
-                        <input
-                            ref={modalRef}
-                            min={1}
-                            max={31}
-                            value={date}
-                            onChange={getDate}
-                            placeholder="enter the date..."
-                            type="number"
-                            onKeyDown={handleKeyPress}
-                        />
-                        <button onClick={() => setFirstStep(true)}>Confirm</button>
-                    </div>
+                    <FirstStep modalRef={modalRef} date={date} getDate={getDate} handleKeyPress={handleKeyPress} setFirstStep={setFirstStep}
+                        handleSubmit={handleSubmit} alert={alert} />
                 )}
             </div>
         </>
