@@ -149,6 +149,7 @@ body {
   border-radius: 5px;
   box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.3);
   z-index: 2;
+  min-height: 300px;
 }
 .modal .content {
   padding: 2em;
@@ -223,7 +224,7 @@ body {
   .modal {
     width: 100%;
     left: 0;
-    top: 20vh;
+    top: 20vw;
     padding: 1rem;
   }
   .modal .content {

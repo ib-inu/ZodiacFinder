@@ -1,6 +1,14 @@
 import ModalError from "./ModalError";
+import { useEffect } from "react";
 
-function Modal({ close, getDate, date, sign, firstStep, setFirstStep, error }) {
+function Modal({ close, getDate, date, sign, firstStep, setFirstStep, error, modalRef }) {
+
+
+    useEffect(() => {
+        if (!firstStep && modalRef.current) {
+            modalRef.current.focus();
+        }
+    }, [firstStep, modalRef]);
 
     const handleKeyPress = (event) => {
         if (event.key === 'Enter') {
@@ -8,42 +16,47 @@ function Modal({ close, getDate, date, sign, firstStep, setFirstStep, error }) {
         }
     };
 
-
     return (
         <>
-            <div className="modal">
-                <div className="content">
-
-                    {firstStep ?
-                        <>
-                            {
-                                sign ?
-                                    <>
-                                        <button className="close-modal" onClick={close}>&times;</button>
-                                        <div className="content-img">
-                                            <span>{sign.image}</span>
-                                        </div>
-                                        <div className="content-text">
-                                            <span>you&apos;ve got :</span>
-                                            <h1>{sign.name}</h1>
-                                            <p>{sign.description}</p>
-                                        </div>
-                                    </>
-                                    :
-                                    <ModalError error={error} close={close} />
-                            }
-                        </> : <div className="birthdate">
-                            <h1>Which day:</h1>
-                            <input min={1} max={31} value={date} onChange={getDate} placeholder="enter the date..." type="number" onKeyDown={handleKeyPress}
-                            />
-                            <button onClick={() => setFirstStep(true)}>Confirm</button>
-                        </div>
-                    }
-                </div>
-            </div>
             <div className="overlay"></div>
+            <div className="modal">
+                {firstStep ? (
+                    <>
+                        {sign ? (
+                            <>
+                                <button className="close-modal" onClick={close}>&times;</button>
+                                <div className="content-img">
+                                    <span>{sign.image}</span>
+                                </div>
+                                <div className="content-text">
+                                    <span>You&apos;ve got :</span>
+                                    <h1>{sign.name}</h1>
+                                    <p>{sign.description}</p>
+                                </div>
+                            </>
+                        ) : (
+                            <ModalError error={error} close={close} />
+                        )}
+                    </>
+                ) : (
+                    <div className="birthdate">
+                        <h1>Which day:</h1>
+                        <input
+                            ref={modalRef}
+                            min={1}
+                            max={31}
+                            value={date}
+                            onChange={getDate}
+                            placeholder="enter the date..."
+                            type="number"
+                            onKeyDown={handleKeyPress}
+                        />
+                        <button onClick={() => setFirstStep(true)}>Confirm</button>
+                    </div>
+                )}
+            </div>
         </>
-    )
+    );
 }
 
-export default Modal
+export default Modal;

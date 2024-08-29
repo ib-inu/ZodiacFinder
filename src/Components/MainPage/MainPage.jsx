@@ -3,11 +3,11 @@ import Heading from "./Heading"
 import Search from "./Search"
 
 
-function MainPage({ setModal, query, setQuery }) {
+function MainPage({ query, setQuery, modalShowsUp, modalRef, count }) {
     return (
         <div className="main">
             <Heading />
-            <Search setModal={setModal} query={query} setQuery={setQuery} />
+            <Search modalShowsUp={modalShowsUp} query={query} setQuery={setQuery} count={count} modalRef={modalRef} />
             <div className="faqs">
                 <Faq />
             </div>
