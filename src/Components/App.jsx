@@ -3,7 +3,6 @@ import MainPage from "./MainPage/MainPage";
 import Modal from "./Modal/Modal";
 import { zodiacSigns } from "../Data/zodiacData";
 
-
 function App() {
     const [modal, setModal] = useState(false);
     const [query, setQuery] = useState('');
@@ -14,8 +13,6 @@ function App() {
     const modalRef = useRef(null);
     const [count, setCount] = useState(0);
 
-
-
     useEffect(() => {
         if (date && query) {
             const [day, month] = [parseInt(date), parseInt(query)];
@@ -24,11 +21,9 @@ function App() {
         }
     }, [date, query]);
 
-    function modelShowsUp() {
+    function modalShowsUp() {
         setModal(true);
         setCount(c => c + 1);
-
-        modalRef.current.focus();
     }
 
     function getZodiacSign(day, month) {
@@ -76,20 +71,25 @@ function App() {
 
     return (
         <div className="container">
-            <MainPage count={count} modalShowsUp={modelShowsUp} modalRef={modalRef} query={query} setQuery={setQuery} setModal={setModal} />
-            {modal ? (
+            <MainPage
+                count={count}
+                modalShowsUp={modalShowsUp}
+                query={query}
+                setQuery={setQuery}
+            />
+            {modal && (
                 <Modal
                     modalRef={modalRef}
                     error={error}
                     sign={sign}
-                    data={date}
-                    setData={setDate}
+                    date={date}
+                    setDate={setDate}
                     close={close}
                     getDate={getDate}
                     firstStep={firstStep}
                     setFirstStep={setFirstStep}
                 />
-            ) : null}
+            )}
         </div>
     );
 }

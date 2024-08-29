@@ -1,14 +1,13 @@
-import ModalError from "./ModalError";
 import { useEffect } from "react";
+import ModalError from "./ModalError";
 
 function Modal({ close, getDate, date, sign, firstStep, setFirstStep, error, modalRef }) {
 
-
     useEffect(() => {
-        if (!firstStep && modalRef.current) {
+        if (modalRef.current && !firstStep) {
             modalRef.current.focus();
         }
-    }, [firstStep, modalRef]);
+    }, [firstStep, modalRef]); // Added modalRef to the dependency array
 
     const handleKeyPress = (event) => {
         if (event.key === 'Enter') {
