@@ -11,6 +11,11 @@ function Search({ setModal, query, setQuery }) {
         setModal(true);
         setCount(c => c + 1);
     }
+    const handleKeyPress = (event) => {
+        if (event.key === 'Enter') {
+            modelShowsUp()
+        }
+    };
 
 
 
@@ -19,7 +24,7 @@ function Search({ setModal, query, setQuery }) {
             <p>Discover your <span>super power</span> by entering your birth month
             </p>
 
-            <input type="number" value={query} placeholder={count > 0 ? "check again..." : "give it a try..."} onChange={e => setQuery(e.target.value)} />
+            <input min={1} max={12} type="number" value={query} placeholder={count > 0 ? "check again..." : "give it a try..."} onChange={e => setQuery(e.target.value)} onKeyDown={handleKeyPress} />
 
             <Button text="&#10143;" onClick={modelShowsUp} />
 

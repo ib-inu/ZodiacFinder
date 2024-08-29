@@ -24,7 +24,6 @@ body {
 
 .main {
   display: grid;
-  gap: 2em;
   grid-template-rows: 0.5fr 0.5fr 1fr;
   height: 100vh;
 }
@@ -53,7 +52,7 @@ body {
 }
 
 .search p {
-  width: 14em;
+  max-width: 14em;
   font-size: 22px;
   font-weight: 500;
   font-family: "Noto Sans", sans-serif;
@@ -71,10 +70,10 @@ body {
 }
 
 .search input {
+  min-height: 50px;
   width: 40vw;
   height: 6vh;
   padding: 12px 0 12px 1.6vw;
-
   border: none;
   border-radius: 22px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
@@ -89,6 +88,8 @@ body {
   box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 8px;
   margin-left: 2vw;
   transform: translateY(12px);
+  min-height: 45px;
+  min-width: 30px;
 }
 
 @keyframes text-animation {
@@ -112,7 +113,7 @@ body {
 }
 
 .faqs {
-  margin-top: 10px;
+  margin-top: 15vh;
   grid-row: 3;
   background-color: #16173a;
   color: var(--secondaryColor);
@@ -138,12 +139,11 @@ body {
 
 .modal {
   background-color: var(--bgColor);
-  width: 50%;
+  width: 50vw;
   position: absolute;
-  top: 100%;
   animation: modalShowsUp 1s ease-out forwards;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  top: 20vh;
+  left: 20vw;
   padding: 2rem;
   padding-bottom: 5em;
   border-radius: 5px;
@@ -222,6 +222,9 @@ body {
   }
   .modal {
     width: 100%;
+    left: 0;
+    top: 20vh;
+    padding: 1rem;
   }
   .modal .content {
     display: flex;
@@ -231,12 +234,20 @@ body {
 }
 
 @media screen and (max-width: 790px) and (max-height: 932px) {
+  .search {
+    margin-left: 25px;
+  }
   .search input {
     width: 70vw;
     padding-left: 20px;
   }
   .modal {
-    top: 100%;
+    width: 100%;
+  }
+  .modal .content {
+    display: flex;
+    flex-direction: column;
+    gap: 10vw;
   }
   .search button {
     font-size: 1em;
@@ -280,4 +291,14 @@ body {
   height: 30px;
   width: 7em;
   cursor: pointer;
+}
+
+.error p,
+.error h1 {
+  color: rgba(255, 0, 0, 0.532);
+  font-weight: 700;
+  font-style: italic;
+}
+.error {
+  text-align: center;
 }
